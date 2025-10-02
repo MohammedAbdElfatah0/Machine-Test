@@ -1,4 +1,5 @@
 import 'package:calley/core/router/string_router.dart';
+import 'package:calley/feature/auth/otp/presentation/screen/otp.dart';
 import 'package:calley/feature/select_language/presentation/screen/select_language.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,11 @@ class RouterApp {
         return MaterialPageRoute(builder: (_) => const RegisterScreen());
       case StringRouter.signIn:
         return MaterialPageRoute(builder: (_) => const LogInScreen());
+      case StringRouter.otpWhatsApp:
+        return MaterialPageRoute(
+          builder: (_) => const OtpScreen(),
+          settings: settings,
+        );
       //problem in router
       default:
         return MaterialPageRoute(builder: (_) => const Scaffold());

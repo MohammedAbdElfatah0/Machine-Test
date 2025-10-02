@@ -12,13 +12,13 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 12),
+      padding: EdgeInsets.symmetric(vertical: 14),
       child: ElevatedButton(
         style: ButtonStyle(
           padding: WidgetStatePropertyAll(
             EdgeInsets.symmetric(
               horizontal: MediaQuery.of(context).size.width * 0.4,
-              vertical: 16,
+              vertical: 21,
             ),
           ),
           backgroundColor: WidgetStatePropertyAll(ColorManager.primary),
@@ -29,7 +29,9 @@ class CustomButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           text,
-          style: FontStyleApp.mediumStyle.copyWith(color: ColorManager.onPrimary),
+          style: FontStyleApp.smallStyle.copyWith(
+            color: ColorManager.onPrimary,
+          ),
         ),
       ),
     );

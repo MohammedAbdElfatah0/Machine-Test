@@ -196,6 +196,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 CustomButton(
                   onPressed: () {
                     //navigation to confrim email screen
+                    Navigator.pushNamed(
+                      context,
+                      StringRouter.otpWhatsApp,
+                      arguments: {
+                        'email': _emailController.text.trim(),
+
+                        'phone': _phoneController.text.trim(),
+                      },
+                    );
                   },
                   text: 'Sign Up',
                 ),

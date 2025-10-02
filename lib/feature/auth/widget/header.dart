@@ -10,11 +10,12 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(title, style: FontStyleApp.boldStyle),
+        Text(title, style: FontStyleApp.boldStyle, textAlign: TextAlign.center),
         const SizedBox(height: 16),
         Text(
           subtitle,
           style: FontStyleApp.smallStyle.copyWith(color: Colors.grey),
+          textAlign: TextAlign.center,
         ),
       ],
     );
