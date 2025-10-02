@@ -3,6 +3,7 @@ import 'package:calley/core/style/color_manager.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/router/string_router.dart';
 import '../../../../../core/style/font_style_app.dart';
 import '../../../../../core/ui/custom_logo.dart';
 import '../../../widget/custem_text_form_field.dart';
@@ -45,7 +46,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
-                    side: const BorderSide(color: ColorManager.divider, width: 0.5),
+                    side: const BorderSide(
+                      color: ColorManager.divider,
+                      width: 0.5,
+                    ),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
@@ -57,7 +61,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: Column(
                         spacing: 20,
                         children: [
-                          Header(),
+                          Header(
+                            title: "Welcome!",
+                            subtitle: "Please register to continue",
+                          ),
                           SizedBox(height: 2),
                           CustomTextFormField(
                             icon: const Icon(Icons.person_3_outlined),
@@ -170,7 +177,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       recognizer:
                                           TapGestureRecognizer()
                                             ..onTap = () {
-                                              // Navigator.pushNamed(context, '/login');
+                                              Navigator.pushNamed(
+                                                context,
+                                                StringRouter.signIn,
+                                              );
                                             },
                                     ),
                                   ],
