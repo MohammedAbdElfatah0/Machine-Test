@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
 import '../../../../core/router/string_router.dart';
 import '../../../../core/style/font_style_app.dart';
-import '../widget/custom_button.dart';
+import '../../../../core/ui/button.dart';
 import '../widget/custom_card_select_language.dart';
 import '../../domain/languages_data.dart';
 

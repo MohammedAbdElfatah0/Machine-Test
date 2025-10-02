@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:calley/core/style/color_manager.dart';
 
 import '../../../../core/style/font_style_app.dart';
 
@@ -20,7 +21,7 @@ class CustomButton extends StatelessWidget {
               vertical: 16,
             ),
           ),
-          backgroundColor: WidgetStatePropertyAll(Colors.blue),
+          backgroundColor: WidgetStatePropertyAll(ColorManager.primary),
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           ),
@@ -28,7 +29,7 @@ class CustomButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           text,
-          style: FontStyleApp.mediumStyle.copyWith(color: Colors.white),
+          style: FontStyleApp.mediumStyle.copyWith(color: ColorManager.onPrimary),
         ),
       ),
     );

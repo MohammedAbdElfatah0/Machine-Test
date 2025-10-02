@@ -1,4 +1,6 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:calley/core/style/color_manager.dart';
 
 class CustomTextFormField extends StatefulWidget {
   final TextEditingController controller;
@@ -7,6 +9,8 @@ class CustomTextFormField extends StatefulWidget {
   final String? Function(String?)? validator;
   final bool isPassword;
   final Function(String)? onFieldSubmitted;
+  final Widget? icon;
+  final bool? prefixIcon;
   const CustomTextFormField({
     super.key,
     required this.controller,
@@ -15,6 +19,8 @@ class CustomTextFormField extends StatefulWidget {
     this.validator,
     this.isPassword = false,
     this.onFieldSubmitted,
+    this.icon,
+    this.prefixIcon = false,
   });
 
   @override
@@ -25,10 +31,10 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   bool _isObscure = true;
   OutlineInputBorder _outLineInPutBorder({bool error = false}) {
     return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(10),
       gapPadding: 8,
       borderSide: BorderSide(
-        color: error ? Colors.red : Colors.black,
+        color: error ? ColorManager.error : ColorManager.border,
         width: 1.25,
       ),
     );
@@ -45,23 +51,40 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       textInputAction: TextInputAction.done,
       decoration: InputDecoration(
         hintText: widget.hint,
-        hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
+        hintStyle: TextStyle(color: ColorManager.hint, fontSize: 14),
         border: _outLineInPutBorder(),
         focusedBorder: _outLineInPutBorder(),
         errorBorder: _outLineInPutBorder(error: true),
-        suffixIcon:
-            widget.isPassword
-                ? GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _isObscure = !_isObscure;
-                    });
-                  },
-                  child: Icon(
-                    _isObscure ? Icons.visibility_off : Icons.visibility,
-                  ),
+        prefix:
+            widget.prefixIcon == true
+                ? CountryCodePicker(
+                  onChanged: (country) {},
+                  initialSelection: 'EG',
+                  showCountryOnly: false,
+                  showOnlyCountryWhenClosed: false,
+                  alignLeft: false,
+                  padding: EdgeInsets.zero,
+                  textStyle: TextStyle(fontSize: 16, color: ColorManager.textPrimary),
                 )
                 : null,
+        suffixIcon:
+            widget.isPassword
+                ? Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _isObscure = !_isObscure;
+                        });
+                      },
+                      icon: Icon(
+                        _isObscure ? Icons.lock_outline : Icons.lock_open,
+                      ),
+                    ),
+                  ],
+                )
+                : widget.icon,
       ),
     );
   }
