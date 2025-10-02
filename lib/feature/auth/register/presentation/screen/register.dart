@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/style/font_style_app.dart';
 import '../../../../../core/ui/custom_logo.dart';
-import '../widget/custem_text_form_field.dart';
-import '../widget/header.dart';
+import '../../../widget/custem_text_form_field.dart';
+import '../../../widget/header.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
