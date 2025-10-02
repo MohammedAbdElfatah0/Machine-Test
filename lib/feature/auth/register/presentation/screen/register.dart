@@ -8,17 +8,21 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            //logo
-            CustomLogo(),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              //logo
+              CustomLogo(),
+              const SizedBox(height: 24),
+              
 
-            //form
+              //form
 
-            //button
-            
-          ],
+              //button
+            ],
+          ),
         ),
       ),
     );
