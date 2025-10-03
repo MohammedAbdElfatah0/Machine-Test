@@ -1,8 +1,9 @@
+import 'package:calley/feature/auth/log_in/data/repository/log_in_repository_implement.dart';
+
 import '../entity/user_entity.dart';
-import '../repository/log_in_repository.dart';
 
 class LogInUseCase {
-  final LogInRepository logInRepository;
+  final LogInRepositoryImplement logInRepository;
 
   LogInUseCase({required this.logInRepository});
 

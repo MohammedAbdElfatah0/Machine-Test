@@ -143,8 +143,8 @@ class _LogInScreenState extends State<LogInScreen> {
                       }
                       FocusScope.of(context).unfocus();
                       context.read<LogInCubit>().logInWithCredentials(
-                        email: _emailController.text,
-                        password: _passwordController.text,
+                        email: _emailController.text.trim(),
+                        password: _passwordController.text.trim(),
                       );
                     },
                     text: isLoading ? "Please wait..." : 'Log In',

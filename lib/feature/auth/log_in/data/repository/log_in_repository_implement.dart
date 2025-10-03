@@ -3,7 +3,7 @@ import '../../domain/repository/log_in_repository.dart';
 import '../api/api_remote_data_source.dart';
 
 class LogInRepositoryImplement extends LogInRepository {
-  final ApiRemoteDataSource apiRemoteDataSource;
+  final ApiRemoteDataSourceImpl apiRemoteDataSource;
 
   LogInRepositoryImplement({required this.apiRemoteDataSource});
 
