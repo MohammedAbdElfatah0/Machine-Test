@@ -3,16 +3,11 @@ import 'package:calley/core/style/color_manager.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart' as http;
-
 import '../../../../../core/router/string_router.dart';
 import '../../../../../core/style/font_style_app.dart';
 import '../../../../../core/ui/custom_logo.dart';
 import '../../../widget/custem_text_form_field.dart';
 import '../../../widget/header.dart';
-import '../../data/api/register_remote_data_soruce.dart';
-import '../../data/repository/register_repository_implement.dart';
-import '../../domain/use_cases/register_use_case.dart';
 import '../cubit/register_cubit.dart';
 import '../cubit/register_state.dart';
 
