@@ -27,10 +27,11 @@ class _OtpViewState extends State<OtpView> {
     (index) => FocusNode(),
   );
   bool _sentOnce = false;
+
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPersistentFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _otpFocusNode[0].requestFocus();
     });
   }
@@ -50,17 +51,6 @@ class _OtpViewState extends State<OtpView> {
   //* for give all value as 000000
   String getEnteredOtp() {
     return _otpController.map((c) => c.text).join();
-  }
-
-  //** for handle backspace on empty field for physical keyboards (optional) */
-  void _onKey(KeyEvent event, int index) {
-    if (event is KeyDownEvent &&
-        event.logicalKey == LogicalKeyboardKey.backspace) {
-      if (_otpController[index].text.isEmpty && index > 0) {
-        _otpFocusNode[index - 1].requestFocus();
-        _otpController[index - 1].text = '';
-      }
-    }
   }
 
   void _onChanged(String value, int index) {
@@ -97,37 +87,33 @@ class _OtpViewState extends State<OtpView> {
   //widget of otp
   Widget _buildOtpBox(int index) {
     return SizedBox(
-      width: 48,
-      height: 48,
-      child: KeyboardListener(
-        focusNode: FocusNode(), // منفصل للتعامل مع الكيبورد
-        onKeyEvent: (event) => _onKey(event, index),
-        child: TextField(
-          controller: _otpController[index],
-          focusNode: _otpFocusNode[index],
-          keyboardType: TextInputType.number,
-          textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-          maxLength: 1,
-          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-          decoration: InputDecoration(
-            counterText: '',
-            filled: true,
-            fillColor: Colors.white,
-            contentPadding: EdgeInsets.zero,
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey.shade300),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Color(0xFF1E88E5), width: 2),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            // subtle shadow/container visual:
-            // We'll wrap with Material to get shadow under box
+      width: 50,
+      height: 60,
+      child: TextField(
+        controller: _otpController[index],
+        focusNode: _otpFocusNode[index],
+        keyboardType: TextInputType.number,
+        textAlign: TextAlign.center,
+        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+        maxLength: 1,
+        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+        decoration: InputDecoration(
+          counterText: '',
+          filled: true,
+          fillColor: Colors.white,
+          contentPadding: EdgeInsets.zero,
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey.shade300),
+            borderRadius: BorderRadius.circular(8),
           ),
-          onChanged: (value) => _onChanged(value, index),
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: Color(0xFF1E88E5), width: 2),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          // subtle shadow/container visual:
+          // We'll wrap with Material to get shadow under box
         ),
+        onChanged: (value) => _onChanged(value, index),
       ),
     );
   }
@@ -138,18 +124,18 @@ class _OtpViewState extends State<OtpView> {
     return BlocConsumer<OtpCubit, OtpState>(
       listener: (context, state) {
         if (state is OtpSent) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('OTP sent')),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(const SnackBar(content: Text('OTP sent')));
         } else if (state is OtpVerified) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('OTP verified')),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(const SnackBar(content: Text('OTP verified')));
           // TODO: Navigate to next screen "Home"
         } else if (state is OtpError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.message)),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.message)));
         }
       },
       builder: (context, state) {
@@ -186,17 +172,18 @@ class _OtpViewState extends State<OtpView> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: List.generate(lengthOtp, (index) {
                             return Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                              child: Material(
-                                elevation: 3,
-                                borderRadius: BorderRadius.circular(10),
-                                child: _buildOtpBox(index),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 6.0,
                               ),
+                              child: _buildOtpBox(index),
                             );
                           }),
                         ),
                         const SizedBox(height: 12),
-                        Text(email, style: const TextStyle(color: Colors.black87)),
+                        Text(
+                          email,
+                          style: const TextStyle(color: Colors.black87),
+                        ),
                         const SizedBox(height: 36),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -207,7 +194,10 @@ class _OtpViewState extends State<OtpView> {
                               child: Text(
                                 'Resend OTP',
                                 style: TextStyle(
-                                  color: isLoading ? Colors.grey : const Color(0xFF1E88E5),
+                                  color:
+                                      isLoading
+                                          ? Colors.grey
+                                          : const Color(0xFF1E88E5),
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
