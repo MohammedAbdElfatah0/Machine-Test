@@ -55,16 +55,28 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         border: _outLineInPutBorder(),
         focusedBorder: _outLineInPutBorder(),
         errorBorder: _outLineInPutBorder(error: true),
+        contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 12),
         prefix:
             widget.prefixIcon == true
-                ? CountryCodePicker(
-                  onChanged: (country) {},
-                  initialSelection: 'EG',
-                  showCountryOnly: false,
-                  showOnlyCountryWhenClosed: false,
-                  alignLeft: false,
-                  padding: EdgeInsets.zero,
-                  textStyle: TextStyle(fontSize: 16, color: ColorManager.textPrimary),
+                ? SizedBox(
+                  width: 100,
+                  child: CountryCodePicker(
+                    onChanged: (country) {},
+                    initialSelection: 'EG',
+                    showCountryOnly: false,
+                    showOnlyCountryWhenClosed: false,
+                    alignLeft: false,
+                    showFlag: true,
+                    padding: EdgeInsets.zero,
+                    dialogTextStyle: TextStyle(
+                      fontSize: 16,
+                      color: ColorManager.textPrimary,
+                    ),
+                    textStyle: TextStyle(
+                      fontSize: 16,
+                      color: ColorManager.textPrimary,
+                    ),
+                  ),
                 )
                 : null,
         suffixIcon:
