@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../domain/use_cases/send_otp_use_case.dart';
@@ -28,12 +30,9 @@ class OtpCubit extends Cubit<OtpState> {
   Future<void> verify(String email, String otp) async {
     emit(OtpLoading());
     try {
-      final ok = await verifyOtpUseCase(email, otp);
-      if (ok) {
-        emit(OtpVerified());
-      } else {
-        emit(OtpError('Invalid OTP'));
-      }
+      log("emit(OtpVerified());");
+       await verifyOtpUseCase(email, otp);
+      emit(OtpVerified());
     } catch (e) {
       emit(OtpError('Verification failed'));
     }

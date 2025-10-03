@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 
 abstract class OtpRemoteDataSource {
@@ -31,10 +32,16 @@ class OtpRemoteDataSourceImpl implements OtpRemoteDataSource {
   Future<bool> verifyOtp(String email, String otp) async {
     final uri = Uri.parse('$baseUrl/verify-otp');
     final body = jsonEncode({'email': email, 'otp': otp});
+    log(body);
     final res = await client.post(uri, headers: _jsonHeaders, body: body);
+    log("res:: ${res.body} and status code:: ${res.statusCode}");
     if (res.statusCode == 200) {
       final body = json.decode(res.body);
+      log(body.toString());
       return body['verified'] == true;
+    }
+    if(res.statusCode == 400){
+      throw Exception('User is verfied');
     }
     return false;
   }

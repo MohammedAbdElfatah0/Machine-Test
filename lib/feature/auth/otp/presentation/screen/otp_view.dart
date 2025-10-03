@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/router/string_router.dart';
 import '../../../../../core/ui/button.dart';
 import '../../../../../core/ui/custom_logo.dart';
 import '../../../widget/header.dart';
@@ -130,8 +133,9 @@ class _OtpViewState extends State<OtpView> {
         } else if (state is OtpVerified) {
           ScaffoldMessenger.of(
             context,
-          ).showSnackBar(const SnackBar(content: Text('OTP verified')));
+          ).showSnackBar(const SnackBar(content: Text('User is verified')));
           // TODO: Navigate to next screen "Home"
+          Navigator.pushReplacementNamed(context, StringRouter.signIn);
         } else if (state is OtpError) {
           ScaffoldMessenger.of(
             context,
@@ -213,7 +217,8 @@ class _OtpViewState extends State<OtpView> {
                 CustomButton(
                   onPressed: () {
                     if (isLoading) return; // prevent double taps
-                    final otp = getEnteredOtp();
+                    final otp = getEnteredOtp().trim();
+                    log(otp);
                     context.read<OtpCubit>().verify(email, otp);
                   },
                   text: isLoading ? 'Please wait...' : 'Verify',

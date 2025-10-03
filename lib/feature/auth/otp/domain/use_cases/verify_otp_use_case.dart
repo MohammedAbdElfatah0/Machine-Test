@@ -1,7 +1,7 @@
-import '../repository/otp_repository.dart';
+import 'package:calley/feature/auth/otp/data/repository/otp_repository_implement.dart';
 
 class VerifyOtpUseCase {
-  final OtpRepository otpRepository;
+  final OtpRepositoryImplement otpRepository;
 
   VerifyOtpUseCase({required this.otpRepository});
 

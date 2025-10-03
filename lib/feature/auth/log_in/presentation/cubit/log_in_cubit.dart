@@ -3,8 +3,6 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:calley/feature/auth/log_in/domain/entity/user_entity.dart';
 import 'package:meta/meta.dart';
-
-import '../../../../../core/router/string_router.dart';
 import '../../domain/usecase/log_in_use_case.dart';
 
 part 'log_in_state.dart';
