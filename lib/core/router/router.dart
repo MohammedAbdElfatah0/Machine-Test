@@ -5,6 +5,8 @@ import 'package:calley/feature/auth/register/presentation/screen/register_screen
 import 'package:calley/feature/select_language/presentation/screen/select_language.dart';
 import 'package:flutter/material.dart';
 
+import '../../feature/home/presentation/screen/home.dart';
+
 class RouterApp {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -19,6 +21,8 @@ class RouterApp {
           builder: (_) => const OtpScreen(),
           settings: settings,
         );
+      case StringRouter.home:
+        return MaterialPageRoute(builder: (_) =>  HomeScreen());
       //problem in router
       default:
         return MaterialPageRoute(builder: (_) => const Scaffold());

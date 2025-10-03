@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        appBarTheme: AppBarTheme(backgroundColor: ColorManager.background),
         scaffoldBackgroundColor: ColorManager.background,
         cardTheme: const CardTheme(color: ColorManager.surface),
       ),

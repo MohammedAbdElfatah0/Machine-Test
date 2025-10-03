@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:calley/core/style/color_manager.dart';
-
+import '../../../../core/style/color_manager.dart';
 import '../../../../core/style/font_style_app.dart';
 
-class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.onPressed, required this.text});
+class CustomButtonHome extends StatelessWidget {
+  const CustomButtonHome({
+    super.key,
+    required this.onPressed,
+    required this.text,
+  });
 
   final VoidCallback onPressed;
   final String text;
@@ -12,12 +15,12 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 14),
+      padding: EdgeInsets.symmetric(vertical: 8),
       child: ElevatedButton(
         style: ButtonStyle(
           padding: WidgetStatePropertyAll(
             EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width * 0.35,
+              horizontal: MediaQuery.of(context).size.width * 0.21,
               vertical: 21,
             ),
           ),
