@@ -136,7 +136,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         isPassword: true,
                       ),
                       CustomTextFormField(
-                        prefixIcon: true,
                         icon: const Icon(Icons.phone_android_outlined),
                         controller: _phoneController,
                         focusNode: _phoneFocusNode,

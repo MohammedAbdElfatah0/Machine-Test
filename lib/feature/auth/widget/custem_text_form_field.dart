@@ -1,4 +1,3 @@
-import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:calley/core/style/color_manager.dart';
 
@@ -10,7 +9,6 @@ class CustomTextFormField extends StatefulWidget {
   final bool isPassword;
   final Function(String)? onFieldSubmitted;
   final Widget? icon;
-  final bool? prefixIcon;
   const CustomTextFormField({
     super.key,
     required this.controller,
@@ -20,7 +18,6 @@ class CustomTextFormField extends StatefulWidget {
     this.isPassword = false,
     this.onFieldSubmitted,
     this.icon,
-    this.prefixIcon = false,
   });
 
   @override
@@ -56,29 +53,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         focusedBorder: _outLineInPutBorder(),
         errorBorder: _outLineInPutBorder(error: true),
         contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 12),
-        prefix:
-            widget.prefixIcon == true
-                ? SizedBox(
-                  width: 100,
-                  child: CountryCodePicker(
-                    onChanged: (country) {},
-                    initialSelection: 'EG',
-                    showCountryOnly: false,
-                    showOnlyCountryWhenClosed: false,
-                    alignLeft: false,
-                    showFlag: true,
-                    padding: EdgeInsets.zero,
-                    dialogTextStyle: TextStyle(
-                      fontSize: 16,
-                      color: ColorManager.textPrimary,
-                    ),
-                    textStyle: TextStyle(
-                      fontSize: 16,
-                      color: ColorManager.textPrimary,
-                    ),
-                  ),
-                )
-                : null,
+        
         suffixIcon:
             widget.isPassword
                 ? Row(
