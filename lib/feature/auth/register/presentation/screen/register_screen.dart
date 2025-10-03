@@ -9,7 +9,7 @@ import '../../domain/use_cases/register_use_case.dart';
 import '../cubit/register_cubit.dart';
 
 class RegisterView extends StatelessWidget {
-  RegisterView({super.key});
+ const RegisterView({super.key});
 
   @override
   Widget build(BuildContext context) {

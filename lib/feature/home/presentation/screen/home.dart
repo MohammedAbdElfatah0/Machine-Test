@@ -7,14 +7,7 @@ import '../../../../core/style/font_style_app.dart';
 import '../widget/menu_item.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
-  static const List<Widget> _widgetOptions = <Widget>[
-    Center(child: Text('Home')),
-    Center(child: Text('profile')),
-    Center(child: Text('Play')),
-    Center(child: Text('Call')),
-    Center(child: Text('Calendar')),
-  ];
+  const HomeScreen({super.key});
 
   static const List<Map<String, dynamic>> menuItems = [
     {'icon': Icons.rocket, 'title': 'Getting Started'},

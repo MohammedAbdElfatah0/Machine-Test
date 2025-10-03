@@ -9,7 +9,7 @@ class MenuItem extends StatelessWidget {
   final VoidCallback onTap;
   final bool isAppInfo;
 
-  MenuItem({
+  const MenuItem({super.key, 
     required this.icon,
     required this.title,
     required this.onTap,

@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/router/string_router.dart';
 import '../../../../../core/style/font_style_app.dart';
 import '../../../../../core/ui/custom_logo.dart';
-import '../../../widget/custem_text_form_field.dart';
+import '../../../widget/custom_text_form_field.dart';
 import '../../../widget/header.dart';
 import '../cubit/register_cubit.dart';
 import '../cubit/register_state.dart';

@@ -82,7 +82,9 @@ class _OtpViewState extends State<OtpView> {
 
   void _resendOtp(String email) {
     context.read<OtpCubit>().resend(email);
-    for (final c in _otpController) c.clear();
+    for (final c in _otpController) {
+      c.clear();
+    }
     _otpFocusNode[0].requestFocus();
     setState(() {});
   }
@@ -134,7 +136,6 @@ class _OtpViewState extends State<OtpView> {
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(const SnackBar(content: Text('User is verified')));
-          // TODO: Navigate to next screen "Home"
           Navigator.pushReplacementNamed(context, StringRouter.signIn);
         } else if (state is OtpError) {
           ScaffoldMessenger.of(
